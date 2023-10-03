@@ -2,6 +2,7 @@
 namespace ExemploCrudPoo;
 
 use PDO;
+use Exception;
 
 // final, pois não vai receber herança de ninguem. 
 final class Fabricante {
@@ -15,6 +16,34 @@ final class Fabricante {
         /* No momento em que um objeto Fabricante for criado, automaticamente será feita a chamada de metodo "conecta" existente na classe Banco. */
         $this->conexao = Banco::conecta();       
     }
+
+
+
+    public function lerFabricantes():array {
+        $sql = "SELECT * FROM fabricantes ORDER BY nome";
+        
+        try {
+            $consulta = $this->conexao->prepare($sql);
+            $consulta->execute();
+            $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $erro) {
+            die("Erro: ".$erro->getMessage());
+        }    
+    
+        return $resultado;
+    } 
+
+
+
+
+
+
+
+
+
+
+
+
 
         
     //id
