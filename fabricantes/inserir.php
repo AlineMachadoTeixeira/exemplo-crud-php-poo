@@ -1,10 +1,14 @@
 <?php
-if( isset($_POST['inserir']) ){
-    require_once "../src/funcoes-fabricantes.php";  
-    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
-    inserirFabricante($conexao, $nome);
+use ExemploCrudPoo\Fabricante;
+require_once "../vendor/autoload.php"; 
+
+if( isset($_POST['inserir']) ){    
+    $fabricante = new Fabricante;
+    $fabricante->setNome( $_POST['nome'] );    
+    $fabricante->inserirFabricante();
     header("location:visualizar.php");
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
