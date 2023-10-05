@@ -1,33 +1,22 @@
 <?php
 require_once "conecta.php";
 
-function lerFabricantes( PDO $conexao ):array {
-    $sql = "SELECT * FROM fabricantes ORDER BY nome";
+// function lerFabricantes( PDO $conexao ):array {
+//     $sql = "SELECT * FROM fabricantes ORDER BY nome";
     
-    try {
-        $consulta = $conexao->prepare($sql);
-        $consulta->execute();
-        $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
-    } catch (Exception $erro) {
-        die("Erro: ".$erro->getMessage());
-    }    
+//     try {
+//         $consulta = $conexao->prepare($sql);
+//         $consulta->execute();
+//         $resultado = $consulta->fetchAll(PDO::FETCH_ASSOC);
+//     } catch (Exception $erro) {
+//         die("Erro: ".$erro->getMessage());
+//     }    
 
-    return $resultado;
-} 
+//     return $resultado;
+// } 
 
 
-function inserirFabricante(PDO $conexao, string $nomeDoFabricante):void {
-    $sql = "INSERT INTO fabricantes(nome) VALUES(:nome)";
 
-    try {
-        $consulta = $conexao->prepare($sql);
-        $consulta->bindValue(":nome", $nomeDoFabricante, PDO::PARAM_STR);
-        $consulta->execute();
-    } catch (Exception $erro) {
-        die("Erro ao inserir: ".$erro->getMessage());
-    }
-
-}
 
 
 function lerUmFabricante(PDO $conexao, int $idFabricante):array {
