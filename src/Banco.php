@@ -32,7 +32,7 @@ abstract class Banco {
                 PDO::ERRMODE_EXCEPTION
             );
 
-            echo "Beleza";
+           
         } catch(Exception $erro){
             die("Deu ruim: ".$erro->getMessage());
         }
