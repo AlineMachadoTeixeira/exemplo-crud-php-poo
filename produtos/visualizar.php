@@ -1,8 +1,15 @@
 <?php
-require_once "../src/funcoes-produtos.php";
-require_once "../src/funcoes-utilitarias.php";
-$listaDeProdutos = lerProdutos($conexao);
+use ExemploCrudPoo\Produto;
+use ExemploCrudPoo\Utilitarios;
+
+require_once "../vendor/autoload.php";
+require_once "../src/Utilitarios.php";
+
+$produto = new Produto;
+
+$listaDeProdutos = $produto->lerProdutos();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +31,10 @@ $listaDeProdutos = lerProdutos($conexao);
                 <article class="shadow p-2">
                     <h3> <?=$produto["produto"]?> </h3>
                     <h4> <?=$produto["fabricante"]?> </h4>
-                    <p><b>Preço:</b> <?=formatarPreco($produto["preco"])?> </p>
+                    <p><b>Preço:</b> <?=Utilitarios::formatarPreco($produto["preco"])?> </p>
                     <p><b>Quantidade:</b> <?=$produto["quantidade"]?> </p>
                     <p><b>Total:</b>
-                    <?=calcularTotal($produto["preco"], $produto["quantidade"])?></p>
+                    <?=Utilitarios::calcularTotal($produto["preco"], $produto["quantidade"])?></p>
                     <hr>
                     <p>
                         <a href="atualizar.php?id=<?=$produto["id"]?>">Editar</a> |
