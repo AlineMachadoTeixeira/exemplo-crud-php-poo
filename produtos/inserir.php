@@ -1,34 +1,26 @@
 <?php
 use ExemploCrudPoo\Produto;
+use ExemploCrudPoo\Fabricante;
 require_once "../vendor/autoload.php";
 
-
-//$listaDeFabricantes = lerFabricantes($conexao);
+$fabricante = new Fabricante;
 $listaDeFabricantes = $fabricante->lerFabricantes();
+
+$produto = new Produto;
 
 if(isset($_POST['inserir'])){
 
-    $nome = filter_input(INPUT_POST, "nome", FILTER_SANITIZE_SPECIAL_CHARS);
-    
-    $preco = filter_input(
-        INPUT_POST, "preco", 
-        FILTER_SANITIZE_NUMBER_FLOAT,
-        FILTER_FLAG_ALLOW_FRACTION
-    );
+    $produto->setNome($_POST ['nome']);
 
-    $quantidade = filter_input(
-        INPUT_POST, "quantidade", FILTER_SANITIZE_NUMBER_INT
-    );
+    $produto->setPreco($_POST ['preco']);
 
-    $fabricanteId = filter_input(
-        INPUT_POST, "fabricante", FILTER_SANITIZE_NUMBER_INT
-    );
+    $produto->setQuantidade($_POST ['quantidade']);
 
-    $descricao = filter_input(INPUT_POST, "descricao", FILTER_SANITIZE_SPECIAL_CHARS);
+    $produto->setFabricanteId($_POST ['fabricante']);
 
-    inserirProduto(
-        $conexao, $nome, $preco, $quantidade, $fabricanteId, $descricao
-    );
+    $produto->setDescricao($_POST ['descricao']);   
+
+    $produto-> inserirProduto();    
 
     header("location:visualizar.php");
 }
