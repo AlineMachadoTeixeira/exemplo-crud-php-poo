@@ -3,7 +3,6 @@ use ExemploCrudPoo\Produto;
 use ExemploCrudPoo\Utilitarios;
 
 require_once "../vendor/autoload.php";
-require_once "../src/Utilitarios.php";
 
 $produto = new Produto;
 
