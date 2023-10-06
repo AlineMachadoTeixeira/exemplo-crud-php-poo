@@ -25,19 +25,21 @@ $listaDeProdutos = $produto->lerProdutos();
         <p><a href="inserir.php">
             Inserir novo produto</a></p>
         <div class="row">
-<?php foreach( $listaDeProdutos as $produto ){ ?>
+<?php foreach( $listaDeProdutos as $dadosProdutos ){ ?>
             <div class="col-md-6">
                 <article class="shadow p-2">
-                    <h3> <?=$produto["produto"]?> </h3>
-                    <h4> <?=$produto["fabricante"]?> </h4>
-                    <p><b>Preço:</b> <?=Utilitarios::formatarPreco($produto["preco"])?> </p>
-                    <p><b>Quantidade:</b> <?=$produto["quantidade"]?> </p>
+                    <h3> <?=$dadosProdutos["produto"]?> </h3>
+                    <h4> <?=$dadosProdutos["fabricante"]?> </h4>
+                        <!-- Chamando::Acessando a classe Utilitarios -->
+                    <p><b>Preço:</b> <?=Utilitarios::formatarPreco($dadosProdutos["preco"])?> </p>
+                    <p><b>Quantidade:</b> <?=$dadosProdutos["quantidade"]?> </p>
                     <p><b>Total:</b>
-                    <?=Utilitarios::calcularTotal($produto["preco"], $produto["quantidade"])?></p>
+                      <!-- Chamando::Acessando a classe Utilitarios -->
+                    <?=Utilitarios::calcularTotal($dadosProdutos["preco"], $dadosProdutos["quantidade"])?></p>
                     <hr>
                     <p>
-                        <a href="atualizar.php?id=<?=$produto["id"]?>">Editar</a> |
-                        <a class="excluir" href="excluir.php?id=<?=$produto["id"]?>">Excluir</a>
+                        <a href="atualizar.php?id=<?=$dadosProdutos["id"]?>">Editar</a> |
+                        <a class="excluir" href="excluir.php?id=<?=$dadosProdutos["id"]?>">Excluir</a>
                     </p>
                 </article>
             </div>
